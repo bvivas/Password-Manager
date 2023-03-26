@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">PasswordManager</string>
+    <string name="app_name_monkey">MonKey</string>
+
+    <!-- Login -->
+    <string name="username">Username</string>
+    <string name="username_hint">Enter your username</string>
+    <string name="password">Password</string>
+    <string name="password_hint">Enter your password</string>
+    <string name="login_text">Log In</string>
+    <string name="go_to_signup_text">Not already registered? Sign up here!</string>
+
+    <!-- Signup -->
+    <string name="signup_text">Sign Up</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="repeat_password_hint">Enter your password again</string>
+
+    <!-- New Site -->
+    <string name="site_name_text">Site name</string>
+    <string name="site_password_text">Password</string>
+    <string name="site_name_text_hint">Enter the site name</string>
+    <string name="site_password_text_hint">Enter the password for this site</string>
+    <string name="autogenerate_text">Autogenerate password</string>
+    <string name="add_site_button_text">Add site</string>
+
+    <!-- Sections -->
+    <string name="home_section_text">Home</string>
+    <string name="new_site_section_text">New site</string>
+    <string name="settings_section_text">Settings</string>
+</resources>
