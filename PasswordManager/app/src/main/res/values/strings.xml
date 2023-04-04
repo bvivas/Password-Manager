@@ -17,8 +17,10 @@
 
     <!-- New Site -->
     <string name="site_name_text">Site name</string>
+    <string name="site_user_text">Username</string>
     <string name="site_password_text">Password</string>
     <string name="site_name_text_hint">Enter the site name</string>
+    <string name="site_user_text_hint">Enter the username for this site</string>
     <string name="site_password_text_hint">Enter the password for this site</string>
     <string name="autogenerate_text">Autogenerate password</string>
     <string name="add_site_button_text">Add site</string>

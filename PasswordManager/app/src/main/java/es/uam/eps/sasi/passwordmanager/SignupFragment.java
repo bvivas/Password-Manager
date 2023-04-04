@@ -55,8 +55,8 @@ public class SignupFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        BottomNavigationView menu = requireActivity().findViewById(R.id.navView);
-        menu.setVisibility(View.INVISIBLE);
+        //BottomNavigationView menu = requireActivity().findViewById(R.id.navView);
+        //menu.setVisibility(View.INVISIBLE);
 
         // Clear inputs
         binding.userTextInput.setText(null);
@@ -156,7 +156,7 @@ public class SignupFragment extends Fragment {
                     User user = new User(username, encryptedPassword);
                     passwordManagerDAO.addUser(user);
 
-                    menu.setVisibility(View.VISIBLE);
+                    //menu.setVisibility(View.VISIBLE);
 
                     Navigation.findNavController(view)
                             .navigate(SignupFragmentDirections

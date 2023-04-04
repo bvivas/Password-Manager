@@ -30,14 +30,49 @@
         <argument
             android:name="username"
             app:argType="string"/>
+        <action
+            android:id="@+id/action_homeFragment_self"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newSiteFragment"
+            app:destination="@id/newSiteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newSiteFragment"
         android:name="es.uam.eps.sasi.passwordmanager.NewSiteFragment"
-        android:label="NewSiteFragment" />
+        android:label="NewSiteFragment" >
+        <argument
+            android:name="username"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_newSiteFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_newSiteFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_newSiteFragment_self"
+            app:destination="@id/newSiteFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/settingsFragment"
         android:name="es.uam.eps.sasi.passwordmanager.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="SettingsFragment" >
+        <argument
+            android:name="username"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_settingsFragment_to_newSiteFragment"
+            app:destination="@id/newSiteFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_self"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

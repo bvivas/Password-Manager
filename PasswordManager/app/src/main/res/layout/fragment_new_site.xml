@@ -42,6 +42,33 @@
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
+                android:id="@+id/site_user_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:text="@string/site_user_text"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/white">
+
+                <EditText
+                    android:id="@+id/site_user_text_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/blood_red"
+                    android:textCursorDrawable="@null"
+                    android:hint="@string/site_user_text_hint">
+                </EditText>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
                 android:id="@+id/site_password_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,8 +96,8 @@
                 </EditText>
             </com.google.android.material.card.MaterialCardView>
 
-            <RadioButton
-                android:id="@+id/expense_radio_button"
+            <CheckBox
+                android:id="@+id/autogenerate_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -79,7 +106,7 @@
                 android:buttonTint="@color/blue"
                 android:text="@string/autogenerate_text"
                 tools:ignore="RtlSymmetry">
-            </RadioButton>
+            </CheckBox>
 
             <Button
                 android:id="@+id/add_site_button"
@@ -92,6 +119,44 @@
                 android:textColor="@color/blood_red"
                 android:textAllCaps="false">
             </Button>
+            <LinearLayout
+                android:id="@+id/nav_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/home_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:text="Home"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/new_site_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:text="New site"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/settings_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:text="Settings"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+            </LinearLayout>
         </LinearLayout>
 
     </RelativeLayout>

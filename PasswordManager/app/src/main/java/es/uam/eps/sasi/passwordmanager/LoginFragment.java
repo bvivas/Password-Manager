@@ -52,8 +52,8 @@ public class LoginFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        BottomNavigationView menu = requireActivity().findViewById(R.id.navView);
-        menu.setVisibility(View.INVISIBLE);
+        //BottomNavigationView menu = requireActivity().findViewById(R.id.navView);
+        //menu.setVisibility(View.INVISIBLE);
 
         // Clear inputs
         binding.userTextInput.setText(null);
@@ -125,7 +125,7 @@ public class LoginFragment extends Fragment {
                 if(!encryptedPassword.equals(userPassword)) {
                     Snackbar.make(view, "incorrect password", Snackbar.LENGTH_LONG).show();
                 } else {
-                    menu.setVisibility(view.VISIBLE);
+                    //menu.setVisibility(view.VISIBLE);
 
                     Navigation.findNavController(view)
                             .navigate(LoginFragmentDirections
