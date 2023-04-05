@@ -20,6 +20,9 @@ public interface PasswordManagerDAO {
     @Query("SELECT * FROM user ORDER BY user_name ASC")
     List<User> getUsers();
 
+    @Query("SELECT * FROM user WHERE user_name = :username")
+    User getUser(String username);
+
     @Delete
     void deleteUser(User user);
 
@@ -31,6 +34,9 @@ public interface PasswordManagerDAO {
 
     @Query("SELECT * FROM site ORDER BY site_name ASC")
     List<Site> getSites();
+
+    @Query("SELECT * FROM site WHERE user_name = :username ORDER BY site_name ASC")
+    List<Site> getUserSites(String username);
 
     @Delete
     void deleteSite(Site site);

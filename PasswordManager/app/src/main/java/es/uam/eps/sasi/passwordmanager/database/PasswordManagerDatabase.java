@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import es.uam.eps.sasi.passwordmanager.Site;
 import es.uam.eps.sasi.passwordmanager.User;
 
-@Database(entities = {User.class, Site.class}, version = 2, exportSchema = false)
+@Database(entities = {User.class, Site.class}, version = 3, exportSchema = false)
 public abstract class PasswordManagerDatabase extends RoomDatabase {
 
     public abstract PasswordManagerDAO getPasswordManagerDAO();

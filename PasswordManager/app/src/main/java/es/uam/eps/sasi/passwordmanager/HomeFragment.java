@@ -11,6 +11,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import java.util.List;
+
+import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDAO;
+import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDatabase;
 import es.uam.eps.sasi.passwordmanager.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -18,6 +22,9 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
     private String username;
+
+    PasswordManagerDatabase database = PasswordManagerDatabase.getInstance(App.getContext());
+    PasswordManagerDAO passwordManagerDAO = database.getPasswordManagerDAO();
 
     @Override
     public View onCreateView(
@@ -35,6 +42,10 @@ public class HomeFragment extends Fragment {
         // Retrieve the username from arguments
         username = HomeFragmentArgs.fromBundle(getArguments()).getUsername();
 
+        // Get list of sites to set the adapter
+        List<Site> list = passwordManagerDAO.getUserSites(username);
+        SiteAdapter adapter = new SiteAdapter(list);
+        binding.siteListRecyclerView.setAdapter(adapter);
 
         return binding.getRoot();
     }
