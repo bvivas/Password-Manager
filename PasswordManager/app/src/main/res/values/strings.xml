@@ -15,7 +15,13 @@
     <string name="repeat_password">Repeat password</string>
     <string name="repeat_password_hint">Enter your password again</string>
 
+    <!-- Home -->
+    <string name="home_home_text">SITES</string>
+    <string name="home_your_sites_text">Your sites</string>
+
     <!-- New Site -->
+    <string name="site_site_text">NEW SITE</string>
+    <string name="site_add_new_site_text">Add new site</string>
     <string name="site_name_text">Site name</string>
     <string name="site_user_text">Username</string>
     <string name="site_password_text">Password</string>
@@ -24,6 +30,10 @@
     <string name="site_password_text_hint">Enter the password for this site</string>
     <string name="autogenerate_text">Autogenerate password</string>
     <string name="add_site_button_text">Add site</string>
+
+    <!-- Settings -->
+    <string name="settings_settings_text">PROFILE</string>
+    <string name="settings_your_profile_text">Your profile</string>
 
     <!-- Sections -->
     <string name="home_section_text">Home</string>

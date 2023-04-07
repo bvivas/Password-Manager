@@ -7,7 +7,7 @@
         android:id="@+id/login_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blood_red">
+        android:background="@color/top_green">
 
         <ImageView
             android:id="@+id/app_image"
@@ -34,13 +34,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/username"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/white"
                 android:layout_gravity="center"/>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/white">
@@ -49,8 +49,10 @@
                     android:id="@+id/user_text_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/blood_red"
+                    android:padding="10dp"
+                    android:background="@null"
                     android:textCursorDrawable="@null"
+                    android:textSize="16sp"
                     android:hint="@string/username_hint">
                 </EditText>
             </com.google.android.material.card.MaterialCardView>
@@ -61,13 +63,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:text="@string/password"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/white"
                 android:layout_gravity="center"/>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="330dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="15dp"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/white">
@@ -76,9 +78,11 @@
                     android:id="@+id/password_text_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:inputType="textPassword"
-                    android:backgroundTint="@color/blood_red"
+                    android:background="@null"
                     android:textCursorDrawable="@null"
+                    android:textSize="16sp"
                     android:hint="@string/password_hint">
                 </EditText>
             </com.google.android.material.card.MaterialCardView>
@@ -88,10 +92,10 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:backgroundTint="@color/white"
                 android:text="@string/login_text"
-                android:textColor="@color/blood_red"
+                android:textColor="@color/top_green"
                 android:textAllCaps="false">
             </Button>
 

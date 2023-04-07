@@ -27,4 +27,7 @@
     <color name="pie_pink">#EF77DA</color>
     <color name="pie_purple">#9151E8</color>
     <color name="pie_grey">#A2A2A2</color>
+    <color name="top_green">#14753e</color>
+    <color name="fill_green">#66c48f</color>
+    <color name="light_light_blue">#e8f1fa</color>
 </resources>

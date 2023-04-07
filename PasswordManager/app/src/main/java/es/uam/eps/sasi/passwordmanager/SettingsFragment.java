@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -42,9 +43,14 @@ public class SettingsFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        Button homeButton = binding.homeButton;
-        Button newSiteButton = binding.newSiteButton;
-        Button settingsButton = binding.settingsButton;
+        // Bottom navigation
+        ImageButton homeButton = binding.homeButton;
+        ImageButton newSiteButton = binding.newSiteButton;
+        ImageButton settingsButton = binding.settingsButton;
+
+        // Settings button filled
+        settingsButton.setImageResource(R.drawable.ic_twotone_person_outline_24);
+        settingsButton.setBackgroundColor(App.getContext().getResources().getColor(R.color.fill_green));
 
         homeButton.setOnClickListener(view -> {
             Navigation.findNavController(view)

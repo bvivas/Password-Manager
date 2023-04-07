@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
@@ -181,10 +182,14 @@ public class NewSiteFragment extends Fragment {
             }
         });
 
-        // Navigation
-        Button homeButton = binding.homeButton;
-        Button newSiteButton = binding.newSiteButton;
-        Button settingsButton = binding.settingsButton;
+        // Bottom navigation
+        ImageButton homeButton = binding.homeButton;
+        ImageButton newSiteButton = binding.newSiteButton;
+        ImageButton settingsButton = binding.settingsButton;
+
+        // New site button filled
+        newSiteButton.setImageResource(R.drawable.ic_twotone_add_circle_24);
+        newSiteButton.setBackgroundColor(App.getContext().getResources().getColor(R.color.fill_green));
 
         homeButton.setOnClickListener(view -> {
             Navigation.findNavController(view)

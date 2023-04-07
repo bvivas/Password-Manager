@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -54,9 +55,14 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        Button homeButton = binding.homeButton;
-        Button newSiteButton = binding.newSiteButton;
-        Button settingsButton = binding.settingsButton;
+        // Bottom navigation
+        ImageButton homeButton = binding.homeButton;
+        ImageButton newSiteButton = binding.newSiteButton;
+        ImageButton settingsButton = binding.settingsButton;
+
+        // Home button filled
+        homeButton.setImageResource(R.drawable.ic_twotone_vpn_key_24);
+        homeButton.setBackgroundColor(App.getContext().getResources().getColor(R.color.fill_green));
 
         homeButton.setOnClickListener(view -> {
             Navigation.findNavController(view)
