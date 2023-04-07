@@ -9,11 +9,15 @@
     <string name="password_hint">Enter your password</string>
     <string name="login_text">Log In</string>
     <string name="go_to_signup_text">Not already registered? Sign up here!</string>
+    <string name="user_not_found_error_message">This user does not exist</string>
+    <string name="incorrect_password_error_message">Incorrect password</string>
 
     <!-- Signup -->
     <string name="signup_text">Sign Up</string>
     <string name="repeat_password">Repeat password</string>
     <string name="repeat_password_hint">Enter your password again</string>
+    <string name="user_already_exists_error_message">This user already exists</string>
+    <string name="passwords_match_error_message">Passwords do not match</string>
 
     <!-- Home -->
     <string name="home_home_text">SITES</string>
@@ -30,10 +34,14 @@
     <string name="site_password_text_hint">Enter the password for this site</string>
     <string name="autogenerate_text">Autogenerate password</string>
     <string name="add_site_button_text">Add site</string>
+    <string name="repeated_site_error_message">You already have a password for this site</string>
+    <string name="site_added_successfully_message">New site added successfully</string>
 
     <!-- Settings -->
     <string name="settings_settings_text">PROFILE</string>
     <string name="settings_your_profile_text">Your profile</string>
+    <string name="log_out_text">Log out</string>
+    <string name="reset_password_button_text">Reset password</string>
 
     <!-- Sections -->
     <string name="home_section_text">Home</string>

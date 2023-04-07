@@ -111,7 +111,7 @@ public class LoginFragment extends Fragment {
                 }
             }
             if(!foundUser) {
-                Snackbar.make(view, "user does not exist", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.user_not_found_error_message, Snackbar.LENGTH_LONG).show();
             } else {
                 // Check password is correct
                 // Encrypt input password with SHA-256
@@ -123,7 +123,7 @@ public class LoginFragment extends Fragment {
                 }
                 String userPassword = passwordManagerDAO.getUserPassword(username);
                 if(!encryptedPassword.equals(userPassword)) {
-                    Snackbar.make(view, "incorrect password", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(view, R.string.incorrect_password_error_message, Snackbar.LENGTH_LONG).show();
                 } else {
                     //menu.setVisibility(view.VISIBLE);
 

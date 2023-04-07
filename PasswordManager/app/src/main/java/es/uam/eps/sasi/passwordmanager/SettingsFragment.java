@@ -12,6 +12,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDAO;
+import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDatabase;
 import es.uam.eps.sasi.passwordmanager.databinding.FragmentSettingsBinding;
 
 public class SettingsFragment extends Fragment {
@@ -19,6 +21,9 @@ public class SettingsFragment extends Fragment {
     private FragmentSettingsBinding binding;
 
     private String username;
+
+    PasswordManagerDatabase database = PasswordManagerDatabase.getInstance(App.getContext());
+    PasswordManagerDAO passwordManagerDAO = database.getPasswordManagerDAO();
 
     @Override
     public View onCreateView(
@@ -42,6 +47,13 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        // Log out
+        binding.logOutButton.setOnClickListener(view -> {
+            Navigation.findNavController(view)
+                    .navigate(SettingsFragmentDirections
+                            .actionSettingsFragmentToLoginFragment());
+        });
 
         // Bottom navigation
         ImageButton homeButton = binding.homeButton;

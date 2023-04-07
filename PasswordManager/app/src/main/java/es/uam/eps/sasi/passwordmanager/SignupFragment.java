@@ -139,11 +139,11 @@ public class SignupFragment extends Fragment {
                 }
             }
             if (repeatedName) {
-                Snackbar.make(view, "repeated name", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.user_already_exists_error_message, Snackbar.LENGTH_LONG).show();
             } else {
                 // Check both passwords match
                 if(!password.equals(repeatedPassword)) {
-                    Snackbar.make(view, "passwords don't match", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(view, R.string.passwords_match_error_message, Snackbar.LENGTH_LONG).show();
                 } else {
                     // Encrypt password with SHA-256
                     String encryptedPassword = null;
