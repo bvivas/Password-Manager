@@ -39,7 +39,7 @@ public class SettingsFragment extends Fragment {
         );
 
         // Retrieve the username from arguments
-        username = HomeFragmentArgs.fromBundle(getArguments()).getUsername();
+        username = SettingsFragmentArgs.fromBundle(getArguments()).getUsername();
 
         return binding.getRoot();
     }

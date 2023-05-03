@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -14,9 +15,11 @@ import es.uam.eps.sasi.passwordmanager.databinding.ListItemSiteBinding;
 public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.SiteHolder> {
 
     private List<Site> list;
+    private String username;
 
-    public SiteAdapter(List<Site> list) {
+    public SiteAdapter(List<Site> list, String username) {
         this.list = list;
+        this.username = username;
     }
 
     public class SiteHolder extends RecyclerView.ViewHolder {
@@ -30,6 +33,12 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.SiteHolder> {
         public void bind(Site site) {
             binding.setSite(site);
             binding.executePendingBindings();
+
+            binding.siteWidget.setOnClickListener(view -> {
+                Navigation.findNavController(view)
+                        .navigate(HomeFragmentDirections
+                        .actionHomeFragmentToHomeSiteInfoFragment(username, site.getId()));
+            });
         }
     }
 

@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
 
         // Get list of sites to set the adapter
         List<Site> list = passwordManagerDAO.getUserSites(username);
-        SiteAdapter adapter = new SiteAdapter(list);
+        SiteAdapter adapter = new SiteAdapter(list, username);
         binding.siteListRecyclerView.setAdapter(adapter);
 
         return binding.getRoot();

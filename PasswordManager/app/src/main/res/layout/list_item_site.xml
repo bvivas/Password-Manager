@@ -51,18 +51,6 @@
                 android:text="@{site.siteUser}"
                 android:textSize="14sp">
             </TextView>
-
-            <TextView
-                android:id="@+id/list_site_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_below="@id/list_site_user"
-                android:text="********"
-                android:textSize="18sp">
-            </TextView>
-
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
