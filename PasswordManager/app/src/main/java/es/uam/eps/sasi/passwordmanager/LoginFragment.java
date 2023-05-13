@@ -102,35 +102,40 @@ public class LoginFragment extends Fragment {
 
         // Log in
         binding.loginButton.setOnClickListener(view ->{
-            // Check the user exists
-            List<User> users = passwordManagerDAO.getUsers();
-            boolean foundUser = false;
-
-            for(User u : users) {
-                if(username.equals(u.getName())) {
-                    foundUser = true;
-                }
-            }
-            if(!foundUser) {
-                Snackbar.make(view, R.string.user_not_found_error_message, Snackbar.LENGTH_LONG).show();
+            // Check fields are not empty
+            if(username == null || username.isEmpty() || password == null || password.isEmpty()) {
+                Snackbar.make(view, R.string.empty_error_message, Snackbar.LENGTH_LONG).show();
             } else {
-                // Check password is correct
-                // Encrypt input password with SHA-256
-                String encryptedPassword = null;
-                try {
-                    encryptedPassword = encryptPassword(password);
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
+                // Check the user exists
+                List<User> users = passwordManagerDAO.getUsers();
+                boolean foundUser = false;
+
+                for(User u : users) {
+                    if(username.equals(u.getName())) {
+                        foundUser = true;
+                    }
                 }
-                // Check if they match
-                String userPassword = passwordManagerDAO.getUserPassword(username);
-                if(!encryptedPassword.equals(userPassword)) {
-                    Snackbar.make(view, R.string.incorrect_password_error_message, Snackbar.LENGTH_LONG).show();
+                if(!foundUser) {
+                    Snackbar.make(view, R.string.user_not_found_error_message, Snackbar.LENGTH_LONG).show();
                 } else {
-                    // Go to home
-                    Navigation.findNavController(view)
-                            .navigate(LoginFragmentDirections
-                                    .actionLoginFragmentToHomeFragment(username));
+                    // Check password is correct
+                    // Encrypt input password with SHA-256
+                    String encryptedPassword = null;
+                    try {
+                        encryptedPassword = encryptPassword(password);
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    }
+                    // Check if they match
+                    String userPassword = passwordManagerDAO.getUserPassword(username);
+                    if(!encryptedPassword.equals(userPassword)) {
+                        Snackbar.make(view, R.string.incorrect_password_error_message, Snackbar.LENGTH_LONG).show();
+                    } else {
+                        // Go to home
+                        Navigation.findNavController(view)
+                                .navigate(LoginFragmentDirections
+                                        .actionLoginFragmentToHomeFragment(username));
+                    }
                 }
             }
         });

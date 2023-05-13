@@ -125,41 +125,46 @@ public class SignupFragment extends Fragment {
 
         // Sign up
         binding.signupButton.setOnClickListener(view -> {
-            // Add new user
-            List<User> users = passwordManagerDAO.getUsers();
-            boolean repeatedName = false;
+            // Check fields are not empty
+            if(username == null || username.isEmpty() || password == null || password.isEmpty() || repeatedPassword == null || repeatedPassword.isEmpty()) {
+                Snackbar.make(view, R.string.empty_error_message, Snackbar.LENGTH_LONG).show();
+            } else {
+                // Add new user
+                List<User> users = passwordManagerDAO.getUsers();
+                boolean repeatedName = false;
 
-            // Check username does not already exist
-            if(!users.isEmpty()) {
-                for(User u : users) {
-                    if(username.equals(u.getName())) {
-                        repeatedName = true;
-                        break;
+                // Check username does not already exist
+                if(!users.isEmpty()) {
+                    for(User u : users) {
+                        if(username.equals(u.getName())) {
+                            repeatedName = true;
+                            break;
+                        }
                     }
                 }
-            }
-            if (repeatedName) {
-                Snackbar.make(view, R.string.user_already_exists_error_message, Snackbar.LENGTH_LONG).show();
-            } else {
-                // Check both passwords match
-                if(!password.equals(repeatedPassword)) {
-                    Snackbar.make(view, R.string.passwords_match_error_message, Snackbar.LENGTH_LONG).show();
+                if (repeatedName) {
+                    Snackbar.make(view, R.string.user_already_exists_error_message, Snackbar.LENGTH_LONG).show();
                 } else {
-                    // Encrypt password with SHA-256
-                    String encryptedPassword = null;
-                    try {
-                        encryptedPassword = encryptPassword(password);
-                    } catch (NoSuchAlgorithmException e) {
-                        e.printStackTrace();
-                    }
-                    // Add user
-                    User user = new User(username, encryptedPassword);
-                    passwordManagerDAO.addUser(user);
+                    // Check both passwords match
+                    if(!password.equals(repeatedPassword)) {
+                        Snackbar.make(view, R.string.passwords_match_error_message, Snackbar.LENGTH_LONG).show();
+                    } else {
+                        // Encrypt password with SHA-256
+                        String encryptedPassword = null;
+                        try {
+                            encryptedPassword = encryptPassword(password);
+                        } catch (NoSuchAlgorithmException e) {
+                            e.printStackTrace();
+                        }
+                        // Add user
+                        User user = new User(username, encryptedPassword);
+                        passwordManagerDAO.addUser(user);
 
-                    // Go to home
-                    Navigation.findNavController(view)
-                            .navigate(SignupFragmentDirections
-                                    .actionSignupFragmentToHomeFragment(username));
+                        // Go to home
+                        Navigation.findNavController(view)
+                                .navigate(SignupFragmentDirections
+                                        .actionSignupFragmentToHomeFragment(username));
+                    }
                 }
             }
         });

@@ -11,6 +11,7 @@
     <string name="go_to_signup_text">Not already registered? Sign up here!</string>
     <string name="user_not_found_error_message">This user does not exist</string>
     <string name="incorrect_password_error_message">Incorrect password</string>
+    <string name="empty_error_message">Some fields are empty</string>
 
     <!-- Signup -->
     <string name="signup_text">SIGN UP</string>

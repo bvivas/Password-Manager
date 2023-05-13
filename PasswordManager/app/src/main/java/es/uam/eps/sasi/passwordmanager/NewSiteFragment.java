@@ -18,8 +18,10 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -27,6 +29,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDAO;
@@ -203,7 +206,7 @@ public class NewSiteFragment extends Fragment {
                 try {
                     encryptedPassword = encryptPassword(password, masterKey);
                     System.out.println(encryptedPassword);
-                } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
+                } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException e) {
                     e.printStackTrace();
                 }
 
@@ -267,18 +270,23 @@ public class NewSiteFragment extends Fragment {
         return sb.toString();
     }
 
-    // Method to encrypt the password using AES-256 in ECB mode, using the master password as key
-    String encryptPassword(String password, String masterKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+    // Method to encrypt the password using AES-256 in CBC mode, using the master password as key
+    String encryptPassword(String password, String masterKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
         // Get AES instance
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         // Key specifications
         SecretKeySpec keySpec = new SecretKeySpec(Utils.hexStringToByteArray(masterKey), "AES");
-        cipher.init(Cipher.ENCRYPT_MODE, keySpec);
+        // Create IV
+        SecureRandom random = new SecureRandom();
+        byte[] IV = new byte[16];
+        random.nextBytes(IV);
+
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, new IvParameterSpec(IV));
 
         // Encrypt
         byte[] cipherText = cipher.doFinal(Utils.toByteArray(password));
 
-        // Parse to hex
-        return Utils.toHex(cipherText);
+        // Concat IV with cipherText
+        return Utils.toHex(IV) + Utils.toHex(cipherText);
     }
 }

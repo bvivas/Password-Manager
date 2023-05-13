@@ -11,14 +11,17 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDAO;
@@ -76,7 +79,7 @@ public class HomeSiteInfoFragment extends Fragment {
         String planePassword = null;
         try {
             planePassword = decryptPassword(site.getPassword(), user.getPassword());
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException e) {
             e.printStackTrace();
         }
 
@@ -144,16 +147,22 @@ public class HomeSiteInfoFragment extends Fragment {
         });
     }
 
-    // Method to decrypt the password using AES-256 in ECB mode
-    String decryptPassword(String encryptedPassword, String masterKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+    // Method to decrypt the password using AES-256 in CBC mode
+    String decryptPassword(String encryptedPassword, String masterKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
         // Get AES instance
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         // Key specifications
         SecretKeySpec keySpec = new SecretKeySpec(Utils.hexStringToByteArray(masterKey), "AES");
-        cipher.init(Cipher.DECRYPT_MODE, keySpec);
+
+        // Get IV and password
+        byte[] input = Utils.hexStringToByteArray(encryptedPassword);
+        byte[] IV = Arrays.copyOfRange(input, 0, 16);
+        byte[] password = Arrays.copyOfRange(input, 16, input.length);
+
+        cipher.init(Cipher.DECRYPT_MODE, keySpec, new IvParameterSpec(IV));
 
         // Decrypt
-        byte[] cipherText = cipher.doFinal(Utils.hexStringToByteArray(encryptedPassword));
+        byte[] cipherText = cipher.doFinal(password);
 
         // Parse to string
         return Utils.toString(cipherText);
