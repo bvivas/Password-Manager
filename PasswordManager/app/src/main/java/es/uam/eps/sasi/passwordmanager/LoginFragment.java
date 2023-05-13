@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.List;
 
 import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDAO;

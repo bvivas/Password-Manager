@@ -27,6 +27,7 @@
     <string name="home_text">HOME</string>
     <string name="site_info_text">Site info</string>
     <string name="site_text">Site</string>
+    <string name="user_site_text">Username</string>
     <string name="password_text">Password</string>
     <string name="hide_password_text">* * * * * * * *</string>
 

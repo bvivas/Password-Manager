@@ -70,8 +70,9 @@ public class HomeSiteInfoFragment extends Fragment {
         // Get site
         Site site = passwordManagerDAO.getSiteById(siteId, username);
 
-        // Site name
+        // Site name, username and password
         binding.siteTextText.setText(site.getName());
+        binding.userSiteTextText.setText(site.getSiteUser());
         binding.passwordTextText.setText(R.string.hide_password_text);
 
         // Decrypt password

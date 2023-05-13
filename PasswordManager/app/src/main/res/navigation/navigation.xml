@@ -103,15 +103,18 @@
             app:argType="java.lang.String"/>
         <action
             android:id="@+id/action_homeSiteInfoFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"/>
         <action
             android:id="@+id/action_homeSiteInfoFragment_self"
             app:destination="@id/homeSiteInfoFragment" />
         <action
             android:id="@+id/action_homeSiteInfoFragment_to_newSiteFragment"
-            app:destination="@id/newSiteFragment" />
+            app:destination="@id/newSiteFragment"
+            app:popUpTo="@id/newSiteFragment"/>
         <action
             android:id="@+id/action_homeSiteInfoFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:popUpTo="@id/settingsFragment"/>
     </fragment>
 </navigation>
