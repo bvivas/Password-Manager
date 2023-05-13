@@ -13,7 +13,7 @@ import androidx.navigation.Navigation;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -25,13 +25,17 @@ import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDAO;
 import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDatabase;
 import es.uam.eps.sasi.passwordmanager.databinding.FragmentHomeSiteInfoBinding;
 
+
 public class HomeSiteInfoFragment extends Fragment {
 
+    // Binding
+    private FragmentHomeSiteInfoBinding binding;
+
+    // Inner variables
     private String username;
     private String siteId;
 
-    private FragmentHomeSiteInfoBinding binding;
-
+    // Database
     PasswordManagerDatabase database = PasswordManagerDatabase.getInstance(App.getContext());
     PasswordManagerDAO passwordManagerDAO = database.getPasswordManagerDAO();
 
@@ -50,6 +54,7 @@ public class HomeSiteInfoFragment extends Fragment {
 
         // Retrieve the username from arguments
         username = HomeSiteInfoFragmentArgs.fromBundle(getArguments()).getUsername();
+        // Retrieve the site id
         siteId = HomeSiteInfoFragmentArgs.fromBundle(getArguments()).getSiteId();
 
         return binding.getRoot();
@@ -59,9 +64,12 @@ public class HomeSiteInfoFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        // Get site
         Site site = passwordManagerDAO.getSiteById(siteId, username);
 
+        // Site name
         binding.siteTextText.setText(site.getName());
+        binding.passwordTextText.setText(R.string.hide_password_text);
 
         // Decrypt password
         User user = passwordManagerDAO.getUser(username);
@@ -71,7 +79,23 @@ public class HomeSiteInfoFragment extends Fragment {
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
             e.printStackTrace();
         }
-        binding.passwordTextText.setText(planePassword);
+
+        // See password button
+        AtomicBoolean buttonClicked = new AtomicBoolean(false);
+        ImageButton passwordButton = binding.showPasswordButton;
+        String finalPlanePassword = planePassword;
+        passwordButton.setOnClickListener(view -> {
+            if(!buttonClicked.get()) {
+                buttonClicked.set(true);
+                passwordButton.setImageResource(R.drawable.ic_baseline_remove_red_eye_24);
+                binding.passwordTextText.setText(finalPlanePassword);
+            } else {
+                buttonClicked.set(false);
+                passwordButton.setImageResource(R.drawable.ic_outline_remove_red_eye_24);
+                binding.passwordTextText.setText(R.string.hide_password_text);
+            }
+        });
+
 
         // Back to home
         binding.backToHomeFab.setOnClickListener(view -> {
@@ -86,7 +110,7 @@ public class HomeSiteInfoFragment extends Fragment {
 
             Navigation.findNavController(view)
                     .navigate(HomeSiteInfoFragmentDirections
-                    .actionHomeSiteInfoFragmentToHomeFragment(username));
+                            .actionHomeSiteInfoFragmentToHomeFragment(username));
         });
 
         // Bottom navigation
@@ -98,18 +122,21 @@ public class HomeSiteInfoFragment extends Fragment {
         homeButton.setImageResource(R.drawable.ic_twotone_vpn_key_24);
         homeButton.setBackgroundColor(App.getContext().getResources().getColor(R.color.fill_green));
 
+        // Go to home
         homeButton.setOnClickListener(view -> {
             Navigation.findNavController(view)
                     .navigate(HomeSiteInfoFragmentDirections
                             .actionHomeSiteInfoFragmentToHomeFragment(username));
         });
 
+        // Go to new site
         newSiteButton.setOnClickListener(view -> {
             Navigation.findNavController(view)
                     .navigate(HomeSiteInfoFragmentDirections
                             .actionHomeSiteInfoFragmentToNewSiteFragment(username));
         });
 
+        // Go to settings
         settingsButton.setOnClickListener(view -> {
             Navigation.findNavController(view)
                     .navigate(HomeSiteInfoFragmentDirections
@@ -117,6 +144,7 @@ public class HomeSiteInfoFragment extends Fragment {
         });
     }
 
+    // Method to decrypt the password using AES-256 in ECB mode
     String decryptPassword(String encryptedPassword, String masterKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         // Get AES instance
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
@@ -124,8 +152,10 @@ public class HomeSiteInfoFragment extends Fragment {
         SecretKeySpec keySpec = new SecretKeySpec(Utils.hexStringToByteArray(masterKey), "AES");
         cipher.init(Cipher.DECRYPT_MODE, keySpec);
 
+        // Decrypt
         byte[] cipherText = cipher.doFinal(Utils.hexStringToByteArray(encryptedPassword));
 
+        // Parse to string
         return Utils.toString(cipherText);
     }
 }

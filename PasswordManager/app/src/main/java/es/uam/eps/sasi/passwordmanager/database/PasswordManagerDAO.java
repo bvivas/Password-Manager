@@ -23,20 +23,17 @@ public interface PasswordManagerDAO {
     @Query("SELECT * FROM user WHERE user_name = :username")
     User getUser(String username);
 
-    @Query("SELECT user_password FROM user WHERE user_name = :username")
-    String getPassword(String username);
-
     @Delete
     void deleteUser(User user);
+
+    @Query("DELETE FROM site WHERE user_name = :username")
+    void deleteUserSites(String username);
 
     @Query("SELECT user_password FROM user WHERE user_name = :username")
     String getUserPassword(String username);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addSite(Site site);
-
-    @Query("SELECT * FROM site ORDER BY site_name ASC")
-    List<Site> getSites();
 
     @Query("SELECT * FROM site WHERE user_name = :username ORDER BY site_name ASC")
     List<Site> getUserSites(String username);

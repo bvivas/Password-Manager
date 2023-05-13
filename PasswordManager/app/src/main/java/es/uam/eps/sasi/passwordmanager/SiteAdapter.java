@@ -12,6 +12,7 @@ import java.util.List;
 
 import es.uam.eps.sasi.passwordmanager.databinding.ListItemSiteBinding;
 
+
 public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.SiteHolder> {
 
     private List<Site> list;
@@ -34,6 +35,7 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.SiteHolder> {
             binding.setSite(site);
             binding.executePendingBindings();
 
+            // Go to site
             binding.siteWidget.setOnClickListener(view -> {
                 Navigation.findNavController(view)
                         .navigate(HomeFragmentDirections

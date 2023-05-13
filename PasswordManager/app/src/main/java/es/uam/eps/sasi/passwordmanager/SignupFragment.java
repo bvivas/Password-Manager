@@ -1,6 +1,5 @@
 package es.uam.eps.sasi.passwordmanager;
 
-import android.icu.text.SymbolTable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,10 +12,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDAO;
@@ -26,13 +23,18 @@ import es.uam.eps.sasi.passwordmanager.databinding.FragmentSignupBinding;
 import java.security.NoSuchAlgorithmException;
 import java.security.MessageDigest;
 
+
 public class SignupFragment extends Fragment {
+
+    // Binding
     private FragmentSignupBinding binding;
 
+    // Inner variables
     private String username;
     private String password;
     private String repeatedPassword;
 
+    // Database
     PasswordManagerDatabase database = PasswordManagerDatabase.getInstance(App.getContext());
     PasswordManagerDAO passwordManagerDAO = database.getPasswordManagerDAO();
 
@@ -55,9 +57,6 @@ public class SignupFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
-        //BottomNavigationView menu = requireActivity().findViewById(R.id.navView);
-        //menu.setVisibility(View.INVISIBLE);
 
         // Clear inputs
         binding.userTextInput.setText(null);
@@ -124,7 +123,7 @@ public class SignupFragment extends Fragment {
         };
         binding.repeatPasswordTextInput.addTextChangedListener(repeatedPasswordTextWatcher);
 
-        // Signed up
+        // Sign up
         binding.signupButton.setOnClickListener(view -> {
             // Add new user
             List<User> users = passwordManagerDAO.getUsers();
@@ -157,20 +156,29 @@ public class SignupFragment extends Fragment {
                     User user = new User(username, encryptedPassword);
                     passwordManagerDAO.addUser(user);
 
-                    //menu.setVisibility(View.VISIBLE);
-
+                    // Go to home
                     Navigation.findNavController(view)
                             .navigate(SignupFragmentDirections
                                     .actionSignupFragmentToHomeFragment(username));
                 }
             }
         });
+
+        // Go to login
+        binding.loginButton.setOnClickListener(view -> {
+            Navigation.findNavController(view)
+                    .navigate(SignupFragmentDirections
+                            .actionSignupFragmentToLoginFragment());
+        });
     }
 
+    // Method to encrypt password and store it using SHA-256 hash function
     String encryptPassword(String planePassword) throws NoSuchAlgorithmException {
+        // Get digest
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] hash = digest.digest(planePassword.getBytes());
 
+        // Parse it to hexadecimal
         return Utils.toHex(hash);
     }
 }

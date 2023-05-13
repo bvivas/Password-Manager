@@ -29,7 +29,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="HOME"
+                    android:text="@string/home_text"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="20sp"
@@ -52,7 +52,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Site info"
+                        android:text="@string/site_info_text"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="16sp"
@@ -78,7 +78,9 @@
                     app:fabSize="mini"
                     android:elevation="1dp"
                     app:elevation="1dp" />
+
             </RelativeLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -97,11 +99,12 @@
 
                 <TextView
                     android:id="@+id/site_text"
-                    android:layout_width="wrap_content"
+                    android:layout_width="75dp"
+                    android:gravity="end"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"
-                    android:text="Site"
+                    android:text="@string/site_text"
                     android:textSize="16sp"
                     android:textColor="@color/black" />
 
@@ -120,9 +123,10 @@
                         android:textCursorDrawable="@null"
                         android:textSize="16sp">
                     </TextView>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
 
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,11 +137,12 @@
 
                 <TextView
                     android:id="@+id/password_text"
-                    android:layout_width="wrap_content"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
+                    android:gravity="end"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"
-                    android:text="Password"
+                    android:text="@string/password_text"
                     android:textSize="16sp"
                     android:textColor="@color/black" />
 
@@ -152,9 +157,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="10dp"
+                        android:paddingEnd="45dp"
                         android:background="@drawable/edit_text_background"
                         android:textCursorDrawable="@null"
-                        android:text="* * * * * * * *"
+                        android:text="@string/hide_password_text"
                         android:textSize="16sp">
                     </TextView>
 
@@ -167,7 +173,9 @@
                         android:src="@drawable/ic_outline_remove_red_eye_24"
                         android:background="@null" >
                     </ImageButton>
+
                 </com.google.android.material.card.MaterialCardView>
+
             </LinearLayout>
 
             <Button
@@ -216,5 +224,7 @@
                 android:background="@color/white"  />
 
         </LinearLayout>
+
     </RelativeLayout>
+
 </layout>

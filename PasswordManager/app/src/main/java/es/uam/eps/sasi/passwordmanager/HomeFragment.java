@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -18,12 +17,16 @@ import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDAO;
 import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDatabase;
 import es.uam.eps.sasi.passwordmanager.databinding.FragmentHomeBinding;
 
+
 public class HomeFragment extends Fragment {
 
+    // Binding
     private FragmentHomeBinding binding;
 
+    // Inner variables
     private String username;
 
+    // Database
     PasswordManagerDatabase database = PasswordManagerDatabase.getInstance(App.getContext());
     PasswordManagerDAO passwordManagerDAO = database.getPasswordManagerDAO();
 
@@ -45,6 +48,7 @@ public class HomeFragment extends Fragment {
 
         // Get list of sites to set the adapter
         List<Site> list = passwordManagerDAO.getUserSites(username);
+        // Set adapter
         SiteAdapter adapter = new SiteAdapter(list, username);
         binding.siteListRecyclerView.setAdapter(adapter);
 
@@ -64,18 +68,21 @@ public class HomeFragment extends Fragment {
         homeButton.setImageResource(R.drawable.ic_twotone_vpn_key_24);
         homeButton.setBackgroundColor(App.getContext().getResources().getColor(R.color.fill_green));
 
+        // Go to home
         homeButton.setOnClickListener(view -> {
             Navigation.findNavController(view)
                     .navigate(HomeFragmentDirections
                             .actionHomeFragmentSelf(username));
         });
 
+        // Go to new site
         newSiteButton.setOnClickListener(view -> {
             Navigation.findNavController(view)
                     .navigate(HomeFragmentDirections
                             .actionHomeFragmentToNewSiteFragment(username));
         });
 
+        // Go to settings
         settingsButton.setOnClickListener(view -> {
             Navigation.findNavController(view)
                     .navigate(HomeFragmentDirections

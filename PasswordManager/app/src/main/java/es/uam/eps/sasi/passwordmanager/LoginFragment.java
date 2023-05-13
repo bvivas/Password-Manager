@@ -12,7 +12,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.security.MessageDigest;
@@ -23,12 +22,17 @@ import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDAO;
 import es.uam.eps.sasi.passwordmanager.database.PasswordManagerDatabase;
 import es.uam.eps.sasi.passwordmanager.databinding.FragmentLoginBinding;
 
+
 public class LoginFragment extends Fragment {
+
+    // Binding
     private FragmentLoginBinding binding;
 
+    // Inner variables
     private String username;
     private String password;
 
+    // Database
     PasswordManagerDatabase database = PasswordManagerDatabase.getInstance(App.getContext());
     PasswordManagerDAO passwordManagerDAO = database.getPasswordManagerDAO();
 
@@ -51,9 +55,6 @@ public class LoginFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
-        //BottomNavigationView menu = requireActivity().findViewById(R.id.navView);
-        //menu.setVisibility(View.INVISIBLE);
 
         // Clear inputs
         binding.userTextInput.setText(null);
@@ -121,12 +122,12 @@ public class LoginFragment extends Fragment {
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
+                // Check if they match
                 String userPassword = passwordManagerDAO.getUserPassword(username);
                 if(!encryptedPassword.equals(userPassword)) {
                     Snackbar.make(view, R.string.incorrect_password_error_message, Snackbar.LENGTH_LONG).show();
                 } else {
-                    //menu.setVisibility(view.VISIBLE);
-
+                    // Go to home
                     Navigation.findNavController(view)
                             .navigate(LoginFragmentDirections
                                     .actionLoginFragmentToHomeFragment(username));
@@ -135,17 +136,20 @@ public class LoginFragment extends Fragment {
         });
 
         // Go to sign up
-        binding.goToSignupText.setOnClickListener(view -> {
+        binding.signupButton.setOnClickListener(view -> {
             Navigation.findNavController(view)
                     .navigate(LoginFragmentDirections
                             .actionLoginFragmentToSignupFragment());
         });
     }
 
+    // Method to encrypt password and store it using SHA-256 hash function
     String encryptPassword(String planePassword) throws NoSuchAlgorithmException {
+        // Get digest
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] hash = digest.digest(planePassword.getBytes());
 
+        // Parse it to hexadecimal
         return Utils.toHex(hash);
     }
 }
