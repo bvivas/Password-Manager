@@ -1,5 +1,5 @@
 # Password-Manager
-Password Manager en Android para el proyecto de la asignatura Seguridad y Auditoría de los Sistemas de Información
+Password Manager in Android for Seguridad y Auditoría de los Sistemas de Información project at EPS-UAM.
 
 ## Installation
 To test the app, it will be necessary to have Android Studio installed, and configure the emulator.
@@ -24,6 +24,10 @@ While using the application, the database will be accessible in the *App inspect
 ## Usage
 Once the app is started, you will be prompted to the Log In screen.
 ### Log In
+To log into the application, you need to have an account. To create an account, go to *Sign Up*.  
+
+You must log with an username and a password, and tap on *Log In*.
+
 
 ### Sign Up
 
