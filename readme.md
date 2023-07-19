@@ -1,6 +1,10 @@
 # Password-Manager
 Password Manager in Android for Seguridad y Auditoría de los Sistemas de Información project at EPS-UAM.
 
+- [Installation](#installation)
+- [Usage](#usage)
+
+
 ## Installation
 To test the app, it will be necessary to have Android Studio installed, and configure the emulator.
 
