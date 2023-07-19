@@ -1,5 +1,7 @@
 # Password-Manager
-Password Manager in Android for Seguridad y Auditoría de los Sistemas de Información project at EPS-UAM.
+Password Manager in Android for Seguridad y Auditoría de los Sistemas de Información project at EPS-UAM.  
+
+![Android Studio](https://img.shields.io/badge/Android_Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 
 - [Installation](#installation)
 - [Usage](#usage)
