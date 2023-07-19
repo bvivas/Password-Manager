@@ -26,10 +26,15 @@ Once the app is started, you will be prompted to the Log In screen.
 ### Log In
 To log into the application, you need to have an account. To create an account, go to *Sign Up*.  
 
-You must log with an username and a password, and tap on *Log In*.
+You must log in with an username and a password, and tap on *Log In*.  
+
+![login demo](https://github.com/bvivas/Password-Manager/blob/master/media/login.gif)
 
 
 ### Sign Up
+To create an account, you need to enter an username and a password. Enter the password twice.  
+
+![signup demo](https://github.com/bvivas/Password-Manager/blob/master/media/signup.gif)
 
 ### Sign Out
 
