@@ -2,10 +2,15 @@
 Password Manager in Android for Seguridad y Auditoría de los Sistemas de Información project at EPS-UAM.  
 
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white) ![Android Studio](https://img.shields.io/badge/Android_Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-
+  
+- [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Credits](#credits)
 
+## Project Structure
+- `PasswordManager`: Android Studio project directory.
+- `media`: GIF images for documentation.
 
 ## Installation
 To test the app, it will be necessary to have Android Studio installed, and configure the emulator.
@@ -71,3 +76,7 @@ You can delete a site that you no longer need tapping on its card and then on *D
 To look up a specific password, tap on the desired site card and then on the eye icon in the password field. This will unhide it.
 
 ![lookup demo](https://github.com/bvivas/Password-Manager/blob/master/media/lookup.gif)
+
+## Credits
+
+[Belén Vivas García](https://github.com/bvivas)
